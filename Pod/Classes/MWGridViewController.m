@@ -26,7 +26,7 @@
     if ((self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]])) {
         
         // Defaults
-        _columns = 3, _columnsL = 4;
+        _columns = 4, _columnsL = 6;
         _margin = 0, _gutter = 1;
         _marginL = 0, _gutterL = 1;
         
@@ -38,18 +38,18 @@
             _marginL = 1, _gutterL = 2;
         } else if ([UIScreen mainScreen].bounds.size.height == 480) {
             // iPhone 3.5 inch
-            _columns = 3, _columnsL = 4;
+            _columns = 4, _columnsL = 6;
             _margin = 0, _gutter = 1;
             _marginL = 1, _gutterL = 2;
         } else {
             // iPhone 4 inch
-            _columns = 3, _columnsL = 5;
+            _columns = 4, _columnsL = 6;
             _margin = 0, _gutter = 1;
             _marginL = 0, _gutterL = 2;
         }
-
+        
         _initialContentOffset = CGPointMake(0, CGFLOAT_MAX);
- 
+        
     }
     return self;
 }
