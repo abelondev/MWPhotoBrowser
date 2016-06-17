@@ -12,6 +12,7 @@
 #import "MWPhotoBrowserPrivate.h"
 #import "SDImageCache.h"
 #import "UIImage+MWPhotoBrowser.h"
+#import "ABMediaPlayer.h"
 
 #define PADDING                  10
 
@@ -63,6 +64,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _photoCount = NSNotFound;
     _previousLayoutBounds = CGRectZero;
     _currentPageIndex = 0;
+    _currentVideoIndex = -1; //AB fix
     _previousPageIndex = NSUIntegerMax;
     _displayActionButton = YES;
     _displayNavArrows = NO;
@@ -547,7 +549,12 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+#ifdef __IPHONE_9_0
+-(UIInterfaceOrientationMask)
+#else
+- (NSUInteger)
+#endif
+supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
 }
 
@@ -1169,7 +1176,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         }
     }
     if (index != NSUIntegerMax) {
-        if (!_currentVideoPlayerViewController) {
+        if (!_currentVideoPlayerViewController&&_currentVideoIndex!=index) {
             [self playVideoAtIndex:index];
         }
     }
@@ -1201,27 +1208,37 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 }
 
 - (void)_playVideo:(NSURL *)videoURL atPhotoIndex:(NSUInteger)index {
+    _mediaPlayer = [[ABMediaPlayer alloc] initWithURL:videoURL];
+    if (_currentVideoIndex != index)
+        return;
+        
+    [self setVideoLoadingIndicatorVisible:YES atPageIndex:index];
+    [_mediaPlayer parseWithCompletion:^(ABMediaType videoType, ABMediaHandler *mediaHandler, NSError *error) {
+        [self setVideoLoadingIndicatorVisible:NO atPageIndex:index];
+        if (_currentVideoIndex != index)
+            return;
 
-    // Setup player
-    _currentVideoPlayerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
-    [_currentVideoPlayerViewController.moviePlayer prepareToPlay];
-    _currentVideoPlayerViewController.moviePlayer.shouldAutoplay = YES;
-    _currentVideoPlayerViewController.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
-    _currentVideoPlayerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
-    // Remove the movie player view controller from the "playback did finish" notification observers
-    // Observe ourselves so we can get it to use the crossfade transition
-    [[NSNotificationCenter defaultCenter] removeObserver:_currentVideoPlayerViewController
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification
-                                                  object:_currentVideoPlayerViewController.moviePlayer];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(videoFinishedCallback:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:_currentVideoPlayerViewController.moviePlayer];
+        _currentVideoPlayerViewController=[mediaHandler movieViewController:ABQuailityMedium];
+        // Setup player
+        //_currentVideoPlayerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
+        _currentVideoPlayerViewController.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+        _currentVideoPlayerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        
+        // Remove the movie player view controller from the "playback did finish" notification observers
+        // Observe ourselves so we can get it to use the crossfade transition
+        [[NSNotificationCenter defaultCenter] removeObserver:_currentVideoPlayerViewController
+                                                        name:MPMoviePlayerPlaybackDidFinishNotification
+                                                      object:_currentVideoPlayerViewController.moviePlayer];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(videoFinishedCallback:)
+                                                     name:MPMoviePlayerPlaybackDidFinishNotification
+                                                   object:_currentVideoPlayerViewController.moviePlayer];
+        
+        // Show
+        NSLog(@"show video player videoURL=%@",videoURL);
+        [self presentViewController:_currentVideoPlayerViewController animated:YES completion:nil];
 
-    // Show
-    [self presentViewController:_currentVideoPlayerViewController animated:YES completion:nil];
-
+    }];
 }
 
 - (void)videoFinishedCallback:(NSNotification*)notification {

@@ -1,0 +1,33 @@
+{
+  "name": "ABMediaPlayer",
+  "version": "0.7",
+  "license": "MIT",
+  "summary": "A media player which allows youtube and vimeo videos along with files",
+  "authors": {
+    "Andrey Belonogov": "abelon.dev@gmail.com"
+  },
+  "platforms": {
+    "ios": "7.1"
+  },
+  "source_files": "Source/**/*",
+  "exclude_files": "Source/ABWebViewPlayer.{h,m}",
+  "requires_arc": true,
+  "homepage": "https://github.com/abelondev/ABMediaPlayer",
+  "source": {
+    "git": "https://github.com/abelondev/ABMediaPlayer",
+    "path": "./"
+  },
+  "frameworks": [
+    "ImageIO",
+    "QuartzCore",
+    "AssetsLibrary",
+    "MediaPlayer"
+  ],
+  "weak_frameworks": "Photos",
+  "public_header_files": "Pod/Classes/**/*.h",
+  "dependencies": {
+    "HCYoutubeParser": [
+      "~> 0.0"
+    ]
+  }
+}

@@ -1049,7 +1049,34 @@
             
         }
         case 8: {
+            photo = [MWPhoto photoWithURL:[NSURL URLWithString:@"http://farm3.static.flickr.com/2449/4052876281_6e068ac860_q.jpg"]];
+            photo.videoURL = [[NSURL alloc] initWithString:@"http://player.vimeo.com/video/29985881"];
+            photo.caption = @"Vimeo";
+            [photos addObject:photo];
             
+            thumb = [MWPhoto photoWithURL:[[NSURL alloc] initWithString:@"http://farm3.static.flickr.com/2449/4052876281_6e068ac860_q.jpg"]];
+            thumb.isVideo = YES;
+            [thumbs addObject:thumb];
+            
+            photo = [MWPhoto photoWithURL:[NSURL URLWithString:@"https://ci3.googleusercontent.com/proxy/hs1irbz7Z5pX0_PuzxCey_eR4vk5DwCs7mcJSVa2lkCGzbHJFlguhFGu18W3CRne5H6FlY2CMq-4siQrdXEMN8qsZetUWw=nu"]];
+            photo.videoURL = [[NSURL alloc] initWithString:@"https://www.youtube.com/watch?v=c52TnapDrcM"];
+            photo.caption = @"Tube";
+            [photos addObject:photo];
+          
+            thumb=[MWPhoto photoWithURL:[NSURL URLWithString:@"https://ci3.googleusercontent.com/proxy/hs1irbz7Z5pX0_PuzxCey_eR4vk5DwCs7mcJSVa2lkCGzbHJFlguhFGu18W3CRne5H6FlY2CMq-4siQrdXEMN8qsZetUWw=nu"]];
+            thumb.isVideo = YES;
+            [thumbs addObject:thumb];
+            
+            
+            //
+            photo = [MWPhoto photoWithURL:[[NSURL alloc] initWithString:@"https://scontent.cdninstagram.com/hphotos-xpt1/t51.2885-15/e15/11192696_824079697688618_1761661_n.jpg"]];
+            photo.videoURL = [[NSURL alloc] initWithString:@"https://scontent.cdninstagram.com/hphotos-xpa1/t50.2886-16/11200303_1440130956287424_1714699187_n.mp4"];
+            [photos addObject:photo];
+            thumb = [MWPhoto photoWithURL:[[NSURL alloc] initWithString:@"https://scontent.cdninstagram.com/hphotos-xpt1/t51.2885-15/s150x150/e15/11192696_824079697688618_1761661_n.jpg"]];
+            thumb.isVideo = YES;
+            [thumbs addObject:thumb];
+            
+        
             // Videos
             
             photo = [MWPhoto photoWithURL:[[NSURL alloc] initWithString:@"https://scontent.cdninstagram.com/hphotos-xpt1/t51.2885-15/e15/11192696_824079697688618_1761661_n.jpg"]];

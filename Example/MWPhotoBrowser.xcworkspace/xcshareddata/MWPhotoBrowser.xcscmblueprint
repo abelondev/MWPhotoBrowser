@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9F9B14DA276794D9192F387F0CC62561009373D0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8FEDF46603C5BF20C650C16C193F3DA33FD989D1" : 0,
+    "A7B32AE2916882D276081C815F3FDD17CB9F9AF3" : 0,
+    "9F9B14DA276794D9192F387F0CC62561009373D0" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C0030F3E-FD35-4C7D-92B9-E8AB01CB8CAC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8FEDF46603C5BF20C650C16C193F3DA33FD989D1" : "..",
+    "A7B32AE2916882D276081C815F3FDD17CB9F9AF3" : "ABMediaPlayer\/",
+    "9F9B14DA276794D9192F387F0CC62561009373D0" : "MWPhotoBrowser\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MWPhotoBrowser",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Example\/MWPhotoBrowser.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nazmulislam\/SRM-Mobile.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8FEDF46603C5BF20C650C16C193F3DA33FD989D1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/abelondev\/MWPhotoBrowser.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9F9B14DA276794D9192F387F0CC62561009373D0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/abelondev\/ABMediaPlayer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A7B32AE2916882D276081C815F3FDD17CB9F9AF3"
+    }
+  ]
+}
